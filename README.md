@@ -2,6 +2,10 @@
 fullstack dev
 ================================================================
 
+## github 报错解决
+    git config --global http.sslVerify false
+
+
 * # Running a Node.js script
 ```javascript
 node index.js
