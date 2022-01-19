@@ -4,7 +4,18 @@ fullstack dev
 
 ## github 报错解决
     git config --global http.sslVerify false
+## javascript中的==与===
+>"=="的比较规则
+>1. 先检查两个操作数的数据类型是否相同
+>2. 如果相同，则比较两个数是否相等
+>3. 如果不同，则先将两个数转换为相同数据类型，再进行比较  
+    ![avatar](/images/==.png)  
 
+>"==="的比较规则
+>1. 先检查两个操作数的数据类型是否相同
+>2. 若不同，直接返回false
+>3. 若相同，则比较二者是否相等  
+![avatar](/images/===.png)  
 
 * # Running a Node.js script
 ```javascript
@@ -63,3 +74,47 @@ npm install nodemon -g  //global安装nodemon
 nodemon app.js  
 //nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.  
 ```
+
+* # Accessing command line arguments
+```javascript
+console.log(process.argv)
+const command = process.argv[2]
+```
+* # Storing data with JSON
+>JSON is nothing more than a string, it can be used to store data in a text file or
+transfer data via an HTTP requests between two machines.  
+>JSON.stringify converts a JavaScript object into a JSON string.
+>JSON.parse converts a JSON string into a JavaScript object.
+```javascript
+const book = {
+    title: 'Ego is the Enemy',
+    author: 'Ryan Holiday'
+}
+
+//Covert JavaScript object into a JSON string
+const bookJSON = JSON.stringify(book)
+
+//Convert JSON string into a object
+const bookObject = JSON.parse(bookJSON)
+```
+>JSON和JavaScript对象很像,但是他们最大的不同是,JSON所有的属性都使用双引号括起来的,JSON不能使用单引号.
+```javascript
+//javascript 对象
+const book = {
+    title: 'Ego is the Enemy',
+    author: 'Ryan Holiday'
+}
+
+//JSON
+{"title":"Ego is the Enemy","author":"Ryan Holiday"}
+```
+
+* # Useful modules
+>1. nodemon  
+>是一种工具，可在检测到目录中的文件更改时通过自动重新启动节点应用程序来帮助开发基于 node.js 的应用程序。
+>2. chalk  
+>修改控制台中字符串的样式
+>3. validator  
+>后端字符串验证模块
+>4. yargs  
+>处理命令行参数神器
