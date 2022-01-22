@@ -1,15 +1,11 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-const getNotes = function(id) {
-	return 'your notes...';
-};
+const getNotes = (id) => 'your notes...';
 
-const addNote = function(title, body) {
+const addNote = (title, body) => {
 	const notes = loadNotes();
-	const duplicateNotes = notes.filter(function(note) {
-		return note.title === title;
-	});
+	const duplicateNotes = notes.filter((note) => note.title === title);
 
 	if (duplicateNotes.length === 0) {
 		notes.push({
@@ -23,12 +19,12 @@ const addNote = function(title, body) {
 	}
 };
 
-const saveNotes = function(notes) {
+const saveNotes = (notes) => {
 	const notesStr = JSON.stringify(notes);
 	fs.writeFileSync('notes.json', notesStr);
 };
 
-const loadNotes = function() {
+const loadNotes = () => {
 	try {
 		const dataBuffer = fs.readFileSync('notes.json');
 		const dataJSON = dataBuffer.toString();
@@ -38,11 +34,9 @@ const loadNotes = function() {
 	}
 };
 
-const removeNote = function(title) {
+const removeNote = (title) => {
 	const notes = loadNotes();
-	const notesToKeep = notes.filter(function(note) {
-		return note.title !== title;
-	});
+	const notesToKeep = notes.filter((note) => note.title !== title);
 	if (notesToKeep.length < notes.length) {
 		saveNotes(notesToKeep);
 		console.log(chalk.green.inverse('Note removed'));
@@ -51,9 +45,12 @@ const removeNote = function(title) {
 	}
 };
 
-const listNotes = function() {
+const listNotes = () => {
 	const notes = loadNotes();
-	console.log(notes);
+	console.log(chalk.blue('Your notes:'));
+	notes.forEach((note) => {
+		console.log(chalk.green(note.title ));
+	});
 };
 module.exports = {
 	getNotes: getNotes,
