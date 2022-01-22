@@ -108,6 +108,19 @@ const book = {
 //JSON
 {"title":"Ego is the Enemy","author":"Ryan Holiday"}
 ```
+* # Node Debugger
+>Node.js ships with a built-in debugger. 
+>It builds off of the developer tools that Chrome and V8 use when debugging JavaScript code in the browser.
+```javascript
+console.log('Thing one')
+debugger    //Debug tools will pause here until your click play again
+console.log('Thing two')
+```
+```javascript
+node inspect app.js     //start app with inspect to use the debugger
+```
+>Visit chrome://inspect in the CHrome browser. 
+>Click "inspect" to open up the developer tools.
 
 * # Useful modules
 >1. nodemon  
