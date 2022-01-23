@@ -122,6 +122,12 @@ node inspect app.js     //start app with inspect to use the debugger
 >Visit chrome://inspect in the CHrome browser. 
 >Click "inspect" to open up the developer tools.
 
+* # Call Stack, Callback Queue, Event loop
+>Node.js单线程运行Call Stack里面的function， C++用其他线程负责维护Event.
+>当event触发，对应的Callback function放到Callback Queue里面.
+>Event Loop会检查Call Stack, 等到里面空了之后才会按顺序将Callback Queue里的function加到Call Stack里面去执行.
+>所以，所有的callback function都会在main function执行之后才会执行.
+
 * # Useful modules
 >1. nodemon  
 >是一种工具，可在检测到目录中的文件更改时通过自动重新启动节点应用程序来帮助开发基于 node.js 的应用程序。
