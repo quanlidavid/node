@@ -49,6 +49,8 @@ checkUtils()
 
 ```javascript
 npm init    //run from the root of your project初始化npm, 使用npm module之前需要初始化npm. It will generate a package.json file in the root of your project.
+//或者
+npm init -y //会使用默认值初始化
 ```
 2. ### npm安装
 >First, it creates a node_modules directory. npm uses this directory to store all the code for the npm modules you have installed.  
@@ -137,3 +139,7 @@ node inspect app.js     //start app with inspect to use the debugger
 >后端字符串验证模块
 >4. yargs  
 >处理命令行参数神器
+>5. request
+>Deprecated. HTTP client
+>6. postman-request
+>HTTP client
