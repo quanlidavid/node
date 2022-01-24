@@ -9,7 +9,7 @@ const forecast = (latitude, longitude, callback) => {
 		if (error) {
 			callback('Unable to connect to weather service', undefined);
 		} else if (response.body.error) {
-			callback('Unable to find location');
+			callback('Unable to find location', undefined);
 		} else {
 			const data = {
 				cast: response.body.current.weather_descriptions[0],
