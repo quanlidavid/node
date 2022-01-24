@@ -5,22 +5,17 @@ const address = process.argv[2];
 if (!address) {
 	console.log('Please enter a place!');
 } else {
-	geocode(place, (error, data) => {
+	geocode(address, (error, { latitude, longitude, location } = {}) => {
 		if (error) {
 			return console.log(error);
 		}
-		forecast(data.latitude, data.longitude, (error, forecastdata) => {
+		forecast(latitude, longitude, (error, { cast, temperature, feel }) => {
 			if (error) {
 				return console.log(error);
 			}
-			console.log(data.location);
+			console.log(location);
 			console.log(
-				forecastdata.cast +
-					'. It is currently ' +
-					forecastdata.temperature +
-					' degree out. It feels like ' +
-					forecastdata.feel +
-					' degrees out.'
+				cast + '. It is currently ' + temperature + ' degree out. It feels like ' + feel + ' degrees out.'
 			);
 		});
 	});

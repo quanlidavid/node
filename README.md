@@ -130,6 +130,55 @@ node inspect app.js     //start app with inspect to use the debugger
 >Event Loop会检查Call Stack, 等到里面空了之后才会按顺序将Callback Queue里的function加到Call Stack里面去执行.
 >所以，所有的callback function都会在main function执行之后才会执行.
 
+
+* # ES6: Object property shorthand
+>The property shorthand makes it easier to define properties when creating a new object.   
+>It provides a shortcut for defining a property whose value comes from a variable of the same name.   
+>You can see this in the example below where a user object is created. The userName
+property gets its value from a variable also called userName.
+```javascript
+const userName = 'Andrew';
+const age = 27;
+
+const user = {
+	userName,
+	userAge: age,
+	location: 'Philadelphia'
+};
+```
+* # ES6: Object destructuring
+>Object destructuring gives you a syntax for pulling properties off of objects and into standalone variables.   
+>This is useful when working with the same object properties throughout your code. Instead of writing product.label a dozen times, you could destructure the property into a productLabel variable.
+```javascript
+//object destructuring
+const product = {
+	label: 'Red notebook',
+	price: 3,
+	stock: 201,
+	salePrice: undefined
+};
+const { label: productLabel, stock, rating = 5 } = product; //The label property has been destructured and stored in productLabel, =5 is a default value for rating
+console.log(productLabel);
+console.log(stock);
+console.log(rating);
+```
+* # ES6: Destructuring function arguments
+>If an object is passed into a function, it can be destructured inside the function definition.   
+>The function accepts an object as its second argument. The label and
+stock properties have both been destructured into standalone variables that become
+available in the function.
+```javascript
+const product = {
+	label: 'Red notebook',
+	price: 3,
+	stock: 201,
+	salePrice: undefined
+};
+const transaction = (type, { label, stock }) => {
+	console.log(type, label, stock);
+};
+transaction('order', product);
+```
 * # Useful modules
 >1. nodemon  
 >是一种工具，可在检测到目录中的文件更改时通过自动重新启动节点应用程序来帮助开发基于 node.js 的应用程序。
