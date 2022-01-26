@@ -192,3 +192,7 @@ transaction('order', product);
 >Deprecated. HTTP client
 >6. postman-request
 >HTTP client
+>7. express
+>Web application framework
+>8. hbs
+>Express.js view engine for handlebars.js
