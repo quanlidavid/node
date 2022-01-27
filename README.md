@@ -182,6 +182,9 @@ transaction('order', product);
 * # Useful modules
 >1. nodemon  
 >是一种工具，可在检测到目录中的文件更改时通过自动重新启动节点应用程序来帮助开发基于 node.js 的应用程序。
+```javascript
+nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
+```
 >2. chalk  
 >修改控制台中字符串的样式
 >3. validator  
