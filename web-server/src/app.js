@@ -58,7 +58,12 @@ app.get('/weather', (req, res) => {
 			}
 			console.log({ cast, temperature, feel });
 			res.send(
-				cast + '. It is currently ' + temperature + ' degree out. It feels like ' + feel + ' degrees out.'
+				// cast + '. It is currently ' + temperature + ' degree out. It feels like ' + feel + ' degrees out.'
+				{
+					cast,
+					temperature,
+					feel
+				}
 			);
 		});
 	});
