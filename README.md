@@ -9,7 +9,7 @@ fullstack dev
 >1. 先检查两个操作数的数据类型是否相同
 >2. 如果相同，则比较两个数是否相等
 >3. 如果不同，则先将两个数转换为相同数据类型，再进行比较  
-    ![avatar](/images/==.png)  
+      ![avatar](/images/==.png)  
 
 >"==="的比较规则
 >1. 先检查两个操作数的数据类型是否相同
@@ -199,3 +199,41 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >Web application framework
 >8. hbs
 >Express.js view engine for handlebars.js
+
+* # Git使用
+## 1. Initializing Git
+```
+git init
+```
+>Git needs to be initialized in your project before it can be used. 
+>You can initialize Git inyour project by running `git init` from the root of the project. 
+>All Git commands should be run from the root of the project.
+## 2. Add .gitignore file
+```
+# Dependency directories
+node_modules/
+```
+>ignore node module directories
+## 3. Show status
+```
+git status
+```
+>显示现在的状态. 
+>get a summary of the changes that are about to be committed.
+
+## 4. Add to staging area
+
+```
+git add src/   	//add src directory
+git add .		//add everything
+```
+>Using `git add <path to file>`, you can add files to the staging area.
+>`git add .` this shortcut adds alluntracked files and unstaged changes to the staging area.
+## 5. Commit
+```
+git commit -m "Init commit"
+```
+>Use `git commit` to create new commits.
+
+* # Heroku
+Use `heroku login -i` to login heroku.
