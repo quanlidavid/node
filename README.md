@@ -2,6 +2,10 @@
 fullstack dev
 ================================================================
 
+[TOC]
+
+
+
 ## github 报错解决
     git config --global http.sslVerify false
 ## javascript中的==与===
@@ -17,11 +21,11 @@ fullstack dev
 >3. 若相同，则比较二者是否相等  
 ![avatar](/images/===.png)  
 
-* # Running a Node.js script
+# Running a Node.js script
 ```javascript
 node index.js
 ```
-* # Node.js module system
+# Node.js module system
 ## 1. Node.js core modules
 >Use require to load core modules/built-in modules.
 ```javascript
@@ -69,7 +73,7 @@ npm list //列出安装的npm module
 ```javascript
 npm install chalk@4.1.2 //安装指定版本
 ```
-* # 全局npm module 
+# 全局npm module 
 >一般是工具,在命令行里运行
 ```javascript
 npm install nodemon -g  //global安装nodemon
@@ -77,12 +81,12 @@ nodemon app.js
 //nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.  
 ```
 
-* # Accessing command line arguments
+# Accessing command line arguments
 ```javascript
 console.log(process.argv)
 const command = process.argv[2]
 ```
-* # Storing data with JSON
+# Storing data with JSON
 >JSON is nothing more than a string, it can be used to store data in a text file or
 transfer data via an HTTP requests between two machines.  
 >JSON.stringify converts a JavaScript object into a JSON string.
@@ -110,7 +114,7 @@ const book = {
 //JSON
 {"title":"Ego is the Enemy","author":"Ryan Holiday"}
 ```
-* # Node Debugger
+# Node Debugger
 >Node.js ships with a built-in debugger. 
 >It builds off of the developer tools that Chrome and V8 use when debugging JavaScript code in the browser.
 ```javascript
@@ -124,14 +128,14 @@ node inspect app.js     //start app with inspect to use the debugger
 >Visit chrome://inspect in the CHrome browser. 
 >Click "inspect" to open up the developer tools.
 
-* # Call Stack, Callback Queue, Event loop
+# Call Stack, Callback Queue, Event loop
 >Node.js单线程运行Call Stack里面的function， C++用其他线程负责维护Event.
 >当event触发，对应的Callback function放到Callback Queue里面.
 >Event Loop会检查Call Stack, 等到里面空了之后才会按顺序将Callback Queue里的function加到Call Stack里面去执行.
 >所以，所有的callback function都会在main function执行之后才会执行.
 
 
-* # ES6: Object property shorthand
+# ES6: Object property shorthand
 >The property shorthand makes it easier to define properties when creating a new object.   
 >It provides a shortcut for defining a property whose value comes from a variable of the same name.   
 >You can see this in the example below where a user object is created. The userName
@@ -146,7 +150,7 @@ const user = {
 	location: 'Philadelphia'
 };
 ```
-* # ES6: Object destructuring
+# ES6: Object destructuring
 >Object destructuring gives you a syntax for pulling properties off of objects and into standalone variables.   
 >This is useful when working with the same object properties throughout your code. Instead of writing product.label a dozen times, you could destructure the property into a productLabel variable.
 ```javascript
@@ -162,7 +166,7 @@ console.log(productLabel);
 console.log(stock);
 console.log(rating);
 ```
-* # ES6: Destructuring function arguments
+# ES6: Destructuring function arguments
 >If an object is passed into a function, it can be destructured inside the function definition.   
 >The function accepts an object as its second argument. The label and
 stock properties have both been destructured into standalone variables that become
@@ -179,7 +183,7 @@ const transaction = (type, { label, stock }) => {
 };
 transaction('order', product);
 ```
-* # Useful modules
+# Useful modules
 >1. nodemon  
 >是一种工具，可在检测到目录中的文件更改时通过自动重新启动节点应用程序来帮助开发基于 node.js 的应用程序。
 ```javascript
@@ -200,7 +204,7 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >8. hbs
 >Express.js view engine for handlebars.js
 
-* # Git使用
+# Git使用
 ## 1. Initializing Git
 ```
 git init
@@ -229,11 +233,53 @@ git add .		//add everything
 ```
 >Using `git add <path to file>`, you can add files to the staging area.
 >`git add .` this shortcut adds alluntracked files and unstaged changes to the staging area.
+
 ## 5. Commit
 ```
 git commit -m "Init commit"
 ```
 >Use `git commit` to create new commits.
 
-* # Heroku
+## 6. Create SSH Keys
+```
+ssh-keygen -t rsa -b 4096 -C "xxx@xxx.com"
+```
+>Use git bash create SSH keys. 产生私钥和公钥，公钥传到要连的server上。
+```
+eval "$(ssh-agent -s)" 	//show agent pid, ensure ssh agent is running
+```
+```
+ssh-add ~/.ssh/id_rsa	//注册私钥
+ssh-add -K ~/.ssh/id_rsa //for mac
+```
+## 7. Add public SSH key to github
+
+```
+ssh -T git@github.com	//test ssh connection to github servers
+```
+
+## 8. Pushing code to github
+```
+git remote add origin git@github.com:quanlidavid/xxxx.git	
+//remote表示远程的仓库 add 表示创建 origin表示远程仓库的名字 
+//这行命令是创建本地和远程仓库通信的渠道
+
+git push -u origin main
+//push 表示推送本地commits到给定的远程仓库
+//origin是远程仓库名字
+//main是远程的分支名
+//-u表示将origin仓库的main分支设置为本地仓库当前分支的upstream上游。以后就可以省掉git push后面的参数。
+```
+## 9. Show all remote repo
+```
+git remote
+```
+# Heroku
+
 Use `heroku login -i` to login heroku.
+
+Use `heroku keys:add` to add ssh key to heroku.
+
+Use `heroku create quan-weather-application` to create a new application and set up a new heroku git remote.
+
+Use `git push heroku main` to deploy node.js to heroku.
