@@ -194,19 +194,32 @@ transaction('order', product);
 nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 ```
 >2. chalk  
->修改控制台中字符串的样式
+> 修改控制台中字符串的样式
+>
 >3. validator  
->后端字符串验证模块
+> 后端字符串验证模块
+>
 >4. yargs  
->处理命令行参数神器
+> 处理命令行参数神器
+>
 >5. request
->Deprecated. HTTP client
+> Deprecated. HTTP client
+>
 >6. postman-request
->HTTP client
+> HTTP client
+>
 >7. express
->Web application framework
+> Web application framework
+>
 >8. hbs
->Express.js view engine for handlebars.js
+> Express.js view engine for handlebars.js
+>
+>9. mongodb
+> mongodb driver
+> 
+>10. mongoose
+>
+>    mongodb object modeling for node.js ODM object document mapper. map object 和 document
 
 # Git使用
 ## 1. Initializing Git
@@ -314,3 +327,40 @@ Use `git push heroku main` to deploy node.js to heroku.
 5. `git commit -m "xxx"` commit
 6. `git push` 推送到远程github仓库
 7. `git push heroku main` 推送到远程heroku仓库
+
+# MongoDB and NoSQL database
+>Collection
+>Document
+>Field
+
+Start DB
+`E:\nodedev>mongodb\bin\mongod.exe --dbpath=mongodb-data`
+
+Install database gui viewer.  https://robomongo.org/
+
+```
+const mongodb = require('mongodb');		//mongodb driver npm
+const MongoClient = mongodb.MongoClient;
+
+const connectionURL = 'mongodb://127.0.0.1:27017';
+const databaseName = 'task-manager';
+
+//connect to server
+MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
+	if (error) {
+		return console.log('Unable to connect to database!');
+	}
+	const db = client.db(databaseName);		//client.db to use specific database
+	db.collection('users').insertOne({
+		name: 'David',
+		age: 36
+	});
+});
+```
+# Promises
+>Promises provide a much needed alternative to the traditional callback pattern.
+>						 						fulfilled
+>						         			/	
+>Promise  -- pending	-->
+>											\
+>						 						rejected
