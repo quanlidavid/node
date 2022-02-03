@@ -98,7 +98,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 		console.log(tasks);
 	}); */
 
-	db
+	/* db
 		.collection('users')
 		.updateOne(
 			{
@@ -132,6 +132,26 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 				}
 			}
 		)
+		.then((result) => {
+			console.log(result);
+		})
+		.catch((error) => {
+			console.log(error);
+		}); */
+
+	db
+		.collection('users')
+		.deleteMany({ age: 36 })
+		.then((result) => {
+			console.log(result);
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+
+	db
+		.collection('tasks')
+		.deleteOne({ description: 'play games' })
 		.then((result) => {
 			console.log(result);
 		})
