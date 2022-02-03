@@ -7,13 +7,13 @@ const { MongoClient, ObjectID } = require('mongodb');
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = 'task-manager';
 
-const id = new ObjectID();
-console.log(id);
-console.log(id.id);
-console.log(id.id.length);
-console.log(id.toHexString());
-console.log(id.toHexString().length);
-console.log(id.getTimestamp());
+// const id = new ObjectID();
+// console.log(id);
+// console.log(id.id);
+// console.log(id.id.length);
+// console.log(id.toHexString());
+// console.log(id.toHexString().length);
+// console.log(id.getTimestamp());
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
 	if (error) {
@@ -67,4 +67,34 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 		}
 		console.log(result);
 	}); */
+
+	/* 	db.collection('users').findOne({ _id: new ObjectID('61fb8e855c502eb884366b6c') }, (error, user) => {
+		if (error) {
+			return console.log('Unable to fetch');
+		}
+
+		console.log(user);
+	});
+
+	db.collection('users').find({ age: 36 }).toArray((error, users) => {
+		console.log(users);
+	});
+
+	db.collection('users').find({ age: 36 }).count((error, count) => {
+		console.log(count);
+	}); */
+
+	db.collection('tasks').findOne({ _id: new ObjectID('61fb933e24978859d977ff51') }, (error, task) => {
+		if (error) {
+			return console.log('Unable to fetch');
+		}
+		console.log(task);
+	});
+
+	db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
+		if (error) {
+			return console.log('Unable to fetch');
+		}
+		console.log(tasks);
+	});
 });
