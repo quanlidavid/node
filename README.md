@@ -68,6 +68,7 @@ managed by npm and will get changed as you run npm commands from the terminal.
 npm i validator //local 安装npm module validator 最新版本
 npm install chalk //local 安装npm module chalk 
 npm list //列出安装的npm module
+npm install		//install all the dependencies in your project. 安装项目的所有依赖
 ```
 3. ### 安装npm module的特定版本,在后面加@版本号
 ```javascript
@@ -79,6 +80,9 @@ npm install chalk@4.1.2 //安装指定版本
 npm install nodemon -g  //global安装nodemon
 nodemon app.js  
 //nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.  
+
+npm uninstall -g nodemon	//将nodemon从全局module中删除
+npm install nodemon --save-dev	//安装nodemon作为dev dependency。 dev dependency只会安装在本地的开发环境，不会装到production环境
 ```
 
 # Accessing command line arguments
@@ -264,6 +268,8 @@ git remote add origin git@github.com:quanlidavid/xxxx.git
 //remote表示远程的仓库 add 表示创建 origin表示远程仓库的名字 
 //这行命令是创建本地和远程仓库通信的渠道
 
+git branch -M main	//重命名当前分支
+
 git push -u origin main
 //push 表示推送本地commits到给定的远程仓库
 //origin是远程仓库名字
@@ -275,11 +281,36 @@ git push -u origin main
 git remote
 ```
 # Heroku
+The `start` script in `package.json` is used to tell Heroku which command to run.
+```
+"start": "node src/app.js"
+```
+`npm run start` 运行start脚本， in local to start server，heroku就是运行start脚本来运行nodejs程序.
 
+```
+"dev": "nodemon src/app.js -e js,hbs"
+```
+
+`npm run dev` 运行dev脚本，使用dev依赖的module nodemon 运行程序。
+
+Heroku uses an enviroment variable to provide the port value need to listen on.
+```
+const port = process.env.PORT || 3000
+app.listen(port, ()=>{
+	console.log('Server is up on port ' + port)
+})
+```
+Install Heroku CLI
 Use `heroku login -i` to login heroku.
-
 Use `heroku keys:add` to add ssh key to heroku.
-
 Use `heroku create quan-weather-application` to create a new application and set up a new heroku git remote.
-
 Use `git push heroku main` to deploy node.js to heroku.
+
+# New feature development workflow
+1. develop new feature
+2. ensure work in local env
+3. `git status` 查看变化
+4. `git add .` 添加变化到stage area
+5. `git commit -m "xxx"` commit
+6. `git push` 推送到远程github仓库
+7. `git push heroku main` 推送到远程heroku仓库
