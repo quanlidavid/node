@@ -364,3 +364,13 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 >Promise  -- pending	-->
 >											\
 >						 						rejected
+
+# The REST API
+| The task resource comon rest api structure |                        |
+| ------------------------------------------ | ---------------------- |
+| Create                                     | POST       /tasks      |
+| Read                                       | GET         /tasks     |
+| Read                                       | GET         /tasks/:id |
+| Update                                     | PATCH   /tasks/:id     |
+| Delete                                     | DELETE /tasks/:id      |
+
