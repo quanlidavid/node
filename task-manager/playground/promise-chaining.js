@@ -25,3 +25,31 @@ Task.findByIdAndDelete({ _id: '61fcec070e366aa8c3af7810' })
 	.catch((error) => {
 		console.log(error);
 	});
+
+const updateAgeAndCount = async (id, age) => {
+	const user = await User.findByIdAndUpdate(id, { age });
+	const count = await User.countDocuments({ age });
+	return count;
+};
+
+updateAgeAndCount('61fbf60855dfefa3bd33a627', 36)
+	.then((count) => {
+		console.log('count: ', count);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+
+const deleteTaskAndCount = async (id) => {
+	const result = await Task.findByIdAndDelete(id);
+	const count = await Task.countDocuments({ completed: false });
+	return count;
+};
+
+deleteTaskAndCount('61fc02570d98c09239ac1969')
+	.then((count) => {
+		console.log('task count: ', count);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
