@@ -218,8 +218,10 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 > mongodb driver
 > 
 >10. mongoose
+> mongodb object modeling for node.js ODM object document mapper. map object 和 document
 >
->    mongodb object modeling for node.js ODM object document mapper. map object 和 document
+>11. bcrypt
+> hashing algorithm 单向hash加密算法。 encrypt algorithm, 使用加密算法可以解密密码。但是单向hash算法，不可以解密。使用单向第二次和储存的密码作比较，来校验password。
 
 # Git使用
 ## 1. Initializing Git
