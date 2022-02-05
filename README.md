@@ -222,6 +222,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >11. bcrypt
 > hashing algorithm 单向hash加密算法。 encrypt algorithm, 使用加密算法可以解密密码。但是单向hash算法，不可以解密。使用单向第二次和储存的密码作比较，来校验password。
+>
+>12. jsonwebtoken
+> JSON Web Tokens的一个实现。由服务端根据规范生成一个令牌（token），并且发放给客户端。此时客户端请求服务端的时候就可以携带着令牌，以令牌来证明自己的身份信息。
 
 # Git使用
 ## 1. Initializing Git
