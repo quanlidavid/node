@@ -51,6 +51,24 @@ const userSchema = new mongoose.Schema({
 	]
 });
 
+//manual method
+/* userSchema.methods.getPublicProfile = function() {
+	const user = this;
+	const userObject = user.toObject();
+	delete userObject.password
+	delete userObject.tokens
+	return userObject;
+}; */
+
+//res.send 的时候默认调用了JSON.stringify()
+userSchema.methods.toJSON = function() {
+	const user = this;
+	const userObject = user.toObject();
+	delete userObject.password;
+	delete userObject.tokens;
+	return userObject;
+};
+
 userSchema.methods.generateAuthToken = async function() {
 	const user = this;
 	const token = jwt.sign({ _id: user._id.toString() }, 'thisismysigniture');
