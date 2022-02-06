@@ -225,6 +225,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >12. jsonwebtoken
 > JSON Web Tokens的一个实现。由服务端根据规范生成一个令牌（token），并且发放给客户端。此时客户端请求服务端的时候就可以携带着令牌，以令牌来证明自己的身份信息。
+>
+>13. multer
+> Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 
 # Git使用
 ## 1. Initializing Git
