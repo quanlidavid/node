@@ -380,6 +380,5 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 | Delete            | DELETE /tasks/:id        |
 
 # Middleware
->without middlwware: 	new request -> run router handler
->with middleware:		new request -> do something -> run route handler
->
+>without middlwware: 	  new request -> run router handler
+>with middleware:		      new request -> do something -> run route handler
