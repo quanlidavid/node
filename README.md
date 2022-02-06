@@ -228,7 +228,10 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >13. multer
 > Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
-
+>
+>14. sharp
+> convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP, GIF and AVIF images of varying dimensions.
+>
 # Git使用
 ## 1. Initializing Git
 ```
