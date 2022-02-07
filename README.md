@@ -232,6 +232,8 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >14. sharp
 > convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP, GIF and AVIF images of varying dimensions.
 >
+>15. jimp
+> javascript image manipulation program
 # Git使用
 ## 1. Initializing Git
 ```
