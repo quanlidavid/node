@@ -230,7 +230,8 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 > Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 >
 >14. sharp
-> convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP, GIF and AVIF images of varying dimensions.
+> convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP, GIF and AVIF images of varying dimensions. 
+>下载失败： npm缓存路径使用npm config get cache 查询。新建_libvips，把libvips-8.9.0-linux-x64.tar.gz放进去。
 >
 >15. jimp
 > javascript image manipulation program
