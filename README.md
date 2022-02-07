@@ -235,6 +235,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >15. jimp
 > javascript image manipulation program
+>
+>16. mailgun.js
+> Javascript SDK for Mailgun. It also need form-data library
 # Git使用
 ## 1. Initializing Git
 ```
@@ -308,30 +311,30 @@ git push -u origin main
 git remote
 ```
 # Heroku
-The `start` script in `package.json` is used to tell Heroku which command to run.
+> The `start` script in `package.json` is used to tell Heroku which command to run.
 ```
 "start": "node src/app.js"
 ```
-`npm run start` 运行start脚本， in local to start server，heroku就是运行start脚本来运行nodejs程序.
+> `npm run start` 运行start脚本， in local to start server，heroku就是运行start脚本来运行nodejs程序.
 
 ```
 "dev": "nodemon src/app.js -e js,hbs"
 ```
 
-`npm run dev` 运行dev脚本，使用dev依赖的module nodemon 运行程序。
+> `npm run dev` 运行dev脚本，使用dev依赖的module nodemon 运行程序。
 
-Heroku uses an enviroment variable to provide the port value need to listen on.
+> Heroku uses an enviroment variable to provide the port value need to listen on.
 ```
 const port = process.env.PORT || 3000
 app.listen(port, ()=>{
 	console.log('Server is up on port ' + port)
 })
 ```
-Install Heroku CLI
-Use `heroku login -i` to login heroku.
-Use `heroku keys:add` to add ssh key to heroku.
-Use `heroku create quan-weather-application` to create a new application and set up a new heroku git remote.
-Use `git push heroku main` to deploy node.js to heroku.
+> Install Heroku CLI  
+> Use `heroku login -i` to login heroku.  
+> Use `heroku keys:add` to add ssh key to heroku.  
+> Use `heroku create quan-weather-application` to create a new application and set up a new heroku git remote.  
+> Use `git push heroku main` to deploy node.js to heroku.
 
 # New feature development workflow
 1. develop new feature
