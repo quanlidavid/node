@@ -238,6 +238,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >16. mailgun.js
 > Javascript SDK for Mailgun. It also need form-data library
+>
+>17. enc-cmd
+> A simple node program for executing commands using an environment from an env file.
 # Git使用
 ## 1. Initializing Git
 ```
@@ -298,7 +301,7 @@ git remote add origin git@github.com:quanlidavid/xxxx.git
 //remote表示远程的仓库 add 表示创建 origin表示远程仓库的名字 
 //这行命令是创建本地和远程仓库通信的渠道
 
-git branch -M main	//重命名当前分支
+git branch -M main	//重命名当前分支 早期默认是master后来改名叫main了
 
 git push -u origin main
 //push 表示推送本地commits到给定的远程仓库
@@ -334,6 +337,14 @@ app.listen(port, ()=>{
 > Use `heroku login -i` to login heroku.  
 > Use `heroku keys:add` to add ssh key to heroku.  
 > Use `heroku create quan-weather-application` to create a new application and set up a new heroku git remote.  
+> Use heroku config to configure environment variables
+```
+heroku config //view config vars
+heroku config:set key=value	//set config var
+heroku config:unset key	//delete config var
+heroku config:set JWT_SECRET=dasfdasff4341 MAILGUN_API_KEY=dasfdasfdasfdasf
+heroku config:set MONGODB_URL="mongodb+srv://xxx:xxx@cluxxx.mongodb.net/task-manager?retryWrites=true&w=majority"
+```
 > Use `git push heroku main` to deploy node.js to heroku.
 
 # New feature development workflow
@@ -394,3 +405,20 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 # Middleware
 >without middlwware: 	  new request -> run router handler
 >with middleware:		      new request -> do something -> run route handler
+
+# Environment Variables
+>Use .env files to store environment variables，使用环境变量代替动态值
+```
+process.env.MAILGUN_API_KEY
+process.env.JWT_SECRET
+process.env.PORT
+process.env.MONGODB_URL
+```
+>script: `"dev": "env-cmd -f ./config/dev.env nodemon src/index.js -e js,hbs"`
+```
+//dev.env 文件
+PORT=3000
+MAILGUN_API_KEY=xx
+MONGODB_URL=mongodb://127.0.0.1:27017
+JWT_SECRET=signiture
+```
