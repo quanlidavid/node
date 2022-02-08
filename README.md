@@ -241,6 +241,12 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >17. enc-cmd
 > A simple node program for executing commands using an environment from an env file.
+>
+>18. jest
+>javascript testing
+>
+>19. mocha
+> javascript testing
 # Git使用
 ## 1. Initializing Git
 ```
