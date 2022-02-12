@@ -247,6 +247,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >19. mocha
 > javascript testing
+>
+>20. supertest
+> testing HTTP
 # Git使用
 ## 1. Initializing Git
 ```

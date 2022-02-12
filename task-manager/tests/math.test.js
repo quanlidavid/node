@@ -18,7 +18,7 @@ test('Should convert 0 C to 32 F', () => {
 test('Async test demo', (done) => {
 	setTimeout(() => {
 		try {
-			expect(1).toBe(2);
+			expect(2).toBe(2);
 			done();
 		} catch (e) {
 			done(e);
@@ -39,5 +39,5 @@ test('Should add two numbers', (done) => {
 
 test('Should add two numbers async/await', async () => {
 	const sum = await add(11, 22);
-	expect(sum).toBe(32);
+	expect(sum).toBe(33);
 });
