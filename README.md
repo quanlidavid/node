@@ -243,7 +243,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 > A simple node program for executing commands using an environment from an env file.
 >
 >18. jest
->javascript testing
+> javascript testing
+> "test": "env-cmd -f ./config/test.env jest --watch --runInBand" 
+> //--runInBand means Run all tests serially in the current process, rather than creating a worker pool of child processes that run tests.
 >
 >19. mocha
 > javascript testing
