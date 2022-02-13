@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../../src/models/user');
+const Task = require('../../src/models/task');
 
 const userOneId = new mongoose.Types.ObjectId();
 const userOne = {
 	_id: userOneId,
-	name: 'John',
-	email: 'john@example.com',
+	name: 'user1',
+	email: 'user1@example.com',
 	password: '12345qwert',
 	tokens: [
 		{
@@ -19,14 +20,60 @@ const userOne = {
 		}
 	]
 };
+const userTwoId = new mongoose.Types.ObjectId();
+const userTwo = {
+	_id: userTwoId,
+	name: 'user2',
+	email: 'user2@example.com',
+	password: 'myhouse0213ue',
+	tokens: [
+		{
+			token: jwt.sign(
+				{
+					_id: userTwoId
+				},
+				process.env.JWT_SECRET
+			)
+		}
+	]
+};
+
+const taskOne = {
+	_id: new mongoose.Types.ObjectId(),
+	description: 'my task 1',
+	completed: false,
+	owner: userOne._id
+};
+const taskTwo = {
+	_id: new mongoose.Types.ObjectId(),
+	description: 'my task 2',
+	completed: true,
+	owner: userOne._id
+};
+const taskThree = {
+	_id: new mongoose.Types.ObjectId(),
+	description: 'my task 3',
+	completed: false,
+	owner: userTwo._id
+};
 
 const setupDatabase = async () => {
 	await User.deleteMany();
 	await new User(userOne).save();
+	await new User(userTwo).save();
+	await Task.deleteMany();
+	await new Task(taskOne).save();
+	await new Task(taskTwo).save();
+	await new Task(taskThree).save();
 };
 
 module.exports = {
 	userOneId,
 	userOne,
-	setupDatabase
+	setupDatabase,
+	userTwoId,
+	userTwo,
+	taskOne,
+	taskTwo,
+	taskThree
 };
