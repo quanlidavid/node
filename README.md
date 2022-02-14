@@ -69,6 +69,7 @@ npm i validator //local 安装npm module validator 最新版本
 npm install chalk //local 安装npm module chalk 
 npm list //列出安装的npm module
 npm install		//install all the dependencies in your project. 安装项目的所有依赖
+npm i nodemon --save-dev	//安装nodemon作为dev dependency。 dev dependency只会安装在本地的开发环境，不会装到production环境
 ```
 3. ### 安装npm module的特定版本,在后面加@版本号
 ```javascript
@@ -252,6 +253,9 @@ nodemon src/app.js -e js,hbs  //添加监控的文件后缀名
 >
 >20. supertest
 > testing HTTP
+>
+>21. socket.io
+> Socket.IO enables real-time bidirectional event-based communication.
 # Git使用
 ## 1. Initializing Git
 ```
@@ -433,3 +437,9 @@ MAILGUN_API_KEY=xx
 MONGODB_URL=mongodb://127.0.0.1:27017
 JWT_SECRET=signiture
 ```
+# WebSocket protocol
+>The WebSocket protocol supports real-time bi-direction communication.  
+>WebSocket是一种在单个TCP连接上进行全双工通信的协议。  
+>WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。  
+>在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
+>websocket协议本身是构建在http协议之上的升级协议，客户端首先向服务器端去建立连接，这个连接本身就是http协议只是在头信息中包含了一些websocket协议的相关信息，一旦http连接建立之后，服务器端读到这些websocket协议的相关信息就将此协议升级成websocket协议。websocket协议也可以应用在非浏览器应用，只需要引入相关的websocket库就可以了.
