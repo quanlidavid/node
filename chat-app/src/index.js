@@ -14,14 +14,17 @@ app.use(express.static(publicDirectoryPath));
 
 io.on('connection', (socket) => {
 	console.log('New websocket connection');
-	socket.emit('message','Welcome!')
-	socket.broadcast.emit('message','Userxxx has joined, welcome!')
-	socket.on('sendMessage', (message) =>{
-		io.emit('message', message)
-	})
-	socket.on('disconnect', () =>{
-		io.emit('message','User xxx has left, bye bye!')
-	})
+	socket.emit('message', 'Welcome!');
+	socket.broadcast.emit('message', 'Userxxx has joined, welcome!');
+	socket.on('sendMessage', (message) => {
+		io.emit('message', message);
+	});
+	socket.on('sendLocation', (coords) => {
+		io.emit('message', `https://google.com/maps?q=${coords.latitude},${coords.longitude}`);
+	});
+	socket.on('disconnect', () => {
+		io.emit('message', 'User xxx has left, bye bye!');
+	});
 });
 
 server.listen(port, () => {
