@@ -69,6 +69,7 @@ npm i validator //local 安装npm module validator 最新版本
 npm install chalk //local 安装npm module chalk 
 npm list //列出安装的npm module
 npm install		//install all the dependencies in your project. 安装项目的所有依赖
+npm i nodemon --save-dev	//安装nodemon作为dev dependency。 dev dependency只会安装在本地的开发环境，不会装到production环境
 ```
 3. ### 安装npm module的特定版本,在后面加@版本号
 ```javascript
