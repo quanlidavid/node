@@ -13,7 +13,7 @@ const locationMessageTemplate = document.querySelector('#location-message-templa
 socket.on('message', (msg) => {
 	console.log(msg);
 	// debugger
-	const html = Mustache.render(messageTemplate, { message: msg });
+	const html = Mustache.render(messageTemplate, { message: msg.text, createdAt: moment(msg.createdAt).format('h:mm a') });
 	$messages.insertAdjacentHTML('beforeend', html);
 });
 
