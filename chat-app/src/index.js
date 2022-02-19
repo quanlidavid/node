@@ -14,10 +14,18 @@ const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirectoryPath));
 
+//socket.emit  发给特定的客户端
+//io.emit  发给所有连接的客户端
+//socket.broadcast.emit  发给除了当前客户端的所有客户端
+//io.to.emit  给房间里的所有客户端发
+//socket.broadcast.to.emit  发给房间里除了当前客户端的所有客户端
 io.on('connection', (socket) => {
 	console.log('New websocket connection');
-	socket.emit('message', generateMessage('Welcome!'));
-	socket.broadcast.emit('message', generateMessage('Userxxx has joined, welcome!'));
+	socket.on('join', ({ username, room }) => {
+		socket.join(room);
+		socket.emit('message', generateMessage(`${username}， Welcome to the room!`));
+		socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined room: ${room}`));
+	});
 	socket.on('sendMessage', (message, callback) => {
 		const filter = new Filter();
 		if (filter.isProfane(message)) {
