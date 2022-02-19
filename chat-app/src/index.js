@@ -4,6 +4,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const Filter = require('bad-words');
 const { generateMessage, generateLocationMessage } = require('./utils/messages');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -21,10 +22,17 @@ app.use(express.static(publicDirectoryPath));
 //socket.broadcast.to.emit  发给房间里除了当前客户端的所有客户端
 io.on('connection', (socket) => {
 	console.log('New websocket connection');
-	socket.on('join', ({ username, room }) => {
-		socket.join(room);
-		socket.emit('message', generateMessage(`${username}， Welcome to the room!`));
-		socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined room: ${room}`));
+	socket.on('join', ({ username, room }, callback) => {
+		const { error, user } = addUser({ id: socket.id, username, room });
+		if (error) {
+			return callback(error); //return 代替 if else
+		}
+		socket.join(user.room);
+		socket.emit('message', generateMessage(`${user.username}， Welcome to the room!`));
+		socket.broadcast
+			.to(user.room)
+			.emit('message', generateMessage(`${user.username} has joined room.`));
+		callback();
 	});
 	socket.on('sendMessage', (message, callback) => {
 		const filter = new Filter();
@@ -42,7 +50,10 @@ io.on('connection', (socket) => {
 		callback();
 	});
 	socket.on('disconnect', () => {
-		io.emit('message', generateMessage('User xxx has left, bye bye!'));
+		const user = removeUser(socket.id);
+		if (user) {
+			io.to(user.room).emit('message', generateMessage(`${user.username} has left!`));
+		}
 	});
 });
 
